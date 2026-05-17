@@ -1,0 +1,6 @@
+# Build artifacts
+out/
+build/
+
+# Toolchains (binarios, no son source)
+toolchains/

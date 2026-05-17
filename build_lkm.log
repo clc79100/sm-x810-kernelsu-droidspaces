@@ -1,0 +1,58 @@
+[INFO] Script dir : /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource
+[INFO] Kernel root: /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common
+[INFO] Out dir    : /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/out
+[INFO] Clang: Android (8508608, based on r450784e) clang version 14.0.7 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6)
+[INFO] GCC  : aarch64-none-linux-gnu-gcc (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119
+
+[INFO] === Paso 1: gki_defconfig ===
+make: se entra en el directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common'
+  GEN     Makefile
+arch/arm64/configs/gki_defconfig:740:warning: override: reassigning to symbol EXT4_FS_SECURITY
+arch/arm64/configs/gki_defconfig:741:warning: override: reassigning to symbol AUDIT
+arch/arm64/configs/gki_defconfig:743:warning: override: reassigning to symbol SECURITY_SELINUX
+#
+# configuration written to .config
+#
+make: se sale del directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common'
+
+[INFO] === Paso 2: merge custom.config ===
+make: se entra en el directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common'
+  GEN     Makefile
+.config:7094:warning: override: reassigning to symbol LOCALVERSION
+.config:7098:warning: override: reassigning to symbol SECURITY_DEFEX
+.config:7101:warning: override: reassigning to symbol FIVE
+.config:7102:warning: override: reassigning to symbol FIVE_GKI_10
+.config:7107:warning: override: reassigning to symbol PROCA
+.config:7108:warning: override: reassigning to symbol PROCA_S_OS
+.config:7109:warning: override: reassigning to symbol PROCA_GKI_10
+.config:7122:warning: override: reassigning to symbol UH
+#
+# configuration written to .config
+#
+make: se sale del directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common'
+[INFO] custom.config aplicado correctamente.
+
+[INFO] === Paso 3: compilando kernel Image ===
+make: se entra en el directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common'
+  SYNC    include/config/auto.conf
+  GEN     Makefile
+  GEN     Makefile
+  DESCEND bpf/resolve_btfids
+  CALL    /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common/scripts/atomic/check-atomics.sh
+  CALL    /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common/scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  CHK     kernel/kheaders_data.tar.xz
+/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common/drivers/knox/ngksm/Makefile:19: [NGKSM] CONFIG_NGKSM Enabled
+/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common/drivers/knox/ngksm/Makefile:25: [NGKSM] CONFIG_NGKPAD Enabled
+/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common/drivers/knox/ngksm/Makefile:40: [NGKSM] TARGET_BUILD_VARIANT user
+make: se sale del directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common'
+
+[INFO] ==============================================
+[INFO]  BUILD COMPLETADO
+[INFO]  Kernel Image en: /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/build/Image
+[INFO] ==============================================
+
+[NEXT] Para KernelSU-Next LKM:
+       1. Clonar KernelSU-Next y compilar el .ko contra este kernel:
+          KDIR=/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/out make -C KernelSU-Next/kernel
+       2. El .ko resultante se incluye en AnyKernel3 junto con Image
