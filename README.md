@@ -6,6 +6,13 @@ Kernel 5.15.153 GKI 2.0 para la **Samsung Galaxy Tab S9+ WiFi (SM-X810)**, con
 para que [DroidSpaces](https://github.com/ravindu644/Droidspaces-OSS) (contenedores
 Linux vía namespaces) funcione sobre él.
 
+> **Toolchains y magiskboot — de dónde salen y cómo se instalan:** ver
+> [`TOOLCHAINS.md`](TOOLCHAINS.md) para el detalle de descarga de ambos toolchains, qué
+> son los ~90 symlinks que traen (alias de herramientas y versionado de libs, no tienen
+> relación con la arquitectura destino), qué es lo que realmente fuerza la compilación
+> cruzada a ARM (`CC`/`CROSS_COMPILE` con rutas absolutas + `ARCH=arm64`, no el
+> `$PATH`), y de dónde bajar `magiskboot`.
+
 ## Requisitos
 
 Nada de esto viene incluido en este repo (están en `.gitignore` o son binarios externos
@@ -15,7 +22,7 @@ al proyecto padre):
 |---|---|---|
 | `clang-r450784e` | `toolchains/clang-r450784e/` | Compilador del kernel |
 | `arm-gnu-toolchain-14.2` | `toolchains/arm-gnu-toolchain-14.2/` | Cross-compiler aarch64 |
-| `magiskboot` | binario standalone (p.ej. `magiskboot-linux-main/magiskboot`) | Desempaquetar/reempaquetar el `boot.img` |
+| [`magiskboot`](TOOLCHAINS.md#magiskboot--de-dónde-sale-y-cómo-se-instala) | binario standalone (p.ej. `magiskboot-linux-main/magiskboot`) | Desempaquetar/reempaquetar el `boot.img` |
 | `boot.img` stock | extraído de un firmware Samsung oficial (`AP_*.tar.md5`) | Base sobre la que se reemplaza el kernel |
 | `adb` + Odin | tu máquina / una máquina Windows | Flashear el resultado final |
 
