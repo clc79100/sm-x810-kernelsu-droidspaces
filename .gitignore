@@ -4,3 +4,6 @@ build/
 
 # Toolchains (binarios, no son source)
 toolchains/
+
+# Archivo de 637MB removido de la historia con git-filter-repo — no volver a commitear
+kernel/Kernel.tar.gz
