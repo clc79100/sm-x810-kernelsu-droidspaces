@@ -58,6 +58,22 @@ export TARGET_SOC=kalama
 export TARGET_PRODUCT=gki
 export TARGET_BOARD_PLATFORM=gki
 
+# --- Versión de KernelSU-Next ---
+# El symlink common/drivers/kernelsu/ → KernelSU-Next/kernel/ pertenece al mismo
+# repo git que el kernel (SM-X810_EUR_15_Opensource/), así el Kbuild ve
+# GIT_ROOT == KERNEL_GIT_ROOT y activa el fallback KSU_VERSION=1.
+# Calculamos la versión desde el repo real y la pasamos explícitamente a make.
+KSU_DIR="$(realpath "${SCRIPT_DIR}/../KernelSU-Next")"
+if [ -d "${KSU_DIR}/.git" ]; then
+    KSU_GIT_COUNT=$(cd "${KSU_DIR}" && git rev-list --count HEAD 2>/dev/null || echo "0")
+    KSU_GIT_TAG_VER=$(cd "${KSU_DIR}" && git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.1")
+    echo "[INFO] KernelSU-Next version: $((30000 + KSU_GIT_COUNT)) (tag: ${KSU_GIT_TAG_VER})"
+else
+    echo "[WARN] KernelSU-Next no es un repo git; se usará versión fallback 1"
+    KSU_GIT_COUNT="0"
+    KSU_GIT_TAG_VER="v0.0.1"
+fi
+
 # --- Opciones de make ---
 CLANG_BIN="${CLANG_DIR}/bin/clang"
 GCC_PREFIX="${GCC_DIR}/bin/aarch64-none-linux-gnu-"
@@ -79,6 +95,10 @@ BUILD_OPTIONS=(
     # NO suprime errores reales de función no declarada (-Wimplicit-function-declaration
     # se mantiene como error — ver nota sobre CONFIG_KNOX_NCM en custom.config).
     KCFLAGS="-Wno-error=unused-variable -Wno-unused-variable"
+    # Fuerza la versión correcta de KernelSU-Next (ver comentario arriba)
+    KSU_GIT_VERSION_VALID=1
+    KSU_GIT_VERSION="${KSU_GIT_COUNT}"
+    KSU_GIT_TAG="${KSU_GIT_TAG_VER}"
 )
 
 build_kernel() {

@@ -3,6 +3,7 @@
 [INFO] Out dir    : /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/out
 [INFO] Clang: Android (8508608, based on r450784e) clang version 14.0.7 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6)
 [INFO] GCC  : aarch64-none-linux-gnu-gcc (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119
+[INFO] KernelSU-Next version: 33150 (tag: v3.2.0)
 
 [INFO] === Paso 1: gki_defconfig ===
 make: se entra en el directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common'
@@ -18,14 +19,24 @@ make: se sale del directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_O
 [INFO] === Paso 2: merge custom.config ===
 make: se entra en el directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common'
   GEN     Makefile
-.config:7094:warning: override: reassigning to symbol LOCALVERSION
-.config:7098:warning: override: reassigning to symbol SECURITY_DEFEX
-.config:7101:warning: override: reassigning to symbol FIVE
-.config:7102:warning: override: reassigning to symbol FIVE_GKI_10
-.config:7107:warning: override: reassigning to symbol PROCA
-.config:7108:warning: override: reassigning to symbol PROCA_S_OS
-.config:7109:warning: override: reassigning to symbol PROCA_GKI_10
-.config:7122:warning: override: reassigning to symbol UH
+.config:7103:warning: override: reassigning to symbol LOCALVERSION
+.config:7106:warning: override: reassigning to symbol SECURITY_DEFEX
+.config:7109:warning: override: reassigning to symbol FIVE
+.config:7110:warning: override: reassigning to symbol FIVE_GKI_10
+.config:7115:warning: override: reassigning to symbol PROCA
+.config:7116:warning: override: reassigning to symbol PROCA_S_OS
+.config:7117:warning: override: reassigning to symbol PROCA_GKI_10
+.config:7121:warning: override: reassigning to symbol UH
+.config:7155:warning: override: reassigning to symbol KSU
+.config:7173:warning: override: reassigning to symbol SYSVIPC
+.config:7174:warning: override: reassigning to symbol POSIX_MQUEUE
+.config:7178:warning: override: reassigning to symbol PID_NS
+.config:7181:warning: override: reassigning to symbol DEVTMPFS
+.config:7189:warning: override: reassigning to symbol NETFILTER_XT_MATCH_ADDRTYPE
+.config:7193:warning: override: reassigning to symbol NETFILTER_XT_TARGET_LOG
+.config:7194:warning: override: reassigning to symbol NETFILTER_XT_MATCH_RECENT
+.config:7197:warning: override: reassigning to symbol IP_SET
+.config:7203:warning: override: reassigning to symbol TMPFS_XATTR
 #
 # configuration written to .config
 #
@@ -42,9 +53,107 @@ make: se entra en el directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_1
   CALL    /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common/scripts/checksyscalls.sh
   CHK     include/generated/compile.h
   CHK     kernel/kheaders_data.tar.xz
+  GEN     kernel/kheaders_data.tar.xz
+  CC      drivers/base/firmware_loader/fallback_table.o
+  CC      drivers/base/firmware_loader/main.o
+  CC      kernel/trace/trace.o
+  CC      drivers/base/firmware_loader/fallback.o
+  CC      kernel/sys.o
+  CC      kernel/module.o
+  CC      net/ethtool/ioctl.o
 /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common/drivers/knox/ngksm/Makefile:19: [NGKSM] CONFIG_NGKSM Enabled
 /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common/drivers/knox/ngksm/Makefile:25: [NGKSM] CONFIG_NGKPAD Enabled
 /home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common/drivers/knox/ngksm/Makefile:40: [NGKSM] TARGET_BUILD_VARIANT user
+-- KernelSU-Next version: 33150
+-- KernelSU-Next tag: v3.2.0
+-- KernelSU-Next new DCACHE flush: 1
+-- KernelSU-Next Manager signature size: 0x3e6
+-- KernelSU-Next Manager signature hash: 79e590113c4c4c0c222978e413a5faa801666957b1212a328e46c00c69821bf7
+  CC      drivers/kernelsu/core/init.o
+  CC      drivers/kernelsu/feature/kernel_umount.o
+  CC      drivers/kernelsu/feature/sucompat.o
+  CC      drivers/kernelsu/hook/lsm_hook.o
+  CC      drivers/kernelsu/hook/setuid_hook.o
+  CC      drivers/kernelsu/hook/syscall_event_bridge.o
+  CC      drivers/kernelsu/hook/syscall_hook_manager.o
+  CC      drivers/kernelsu/hook/tp_marker.o
+  CC      drivers/kernelsu/hook/arm64/patch_memory.o
+  CC      drivers/kernelsu/hook/arm64/syscall_hook.o
+  CC      drivers/kernelsu/extras.o
+  CC      drivers/kernelsu/tiny_sulog.o
+  CC      drivers/kernelsu/infra/file_wrapper.o
+  CC      drivers/kernelsu/infra/seccomp_cache.o
+  CC      drivers/kernelsu/infra/su_mount_ns.o
+  CC      drivers/kernelsu/infra/symbol_resolver.o
+  CC      drivers/kernelsu/manager/apk_sign.o
+  CC      drivers/kernelsu/manager/pkg_observer.o
+  CC      drivers/kernelsu/manager/throne_tracker.o
+  CC      drivers/kernelsu/policy/allowlist.o
+  CC      drivers/kernelsu/policy/app_profile.o
+  CC      drivers/kernelsu/policy/feature.o
+  AR      drivers/base/firmware_loader/built-in.a
+  CC      drivers/kernelsu/runtime/boot_event.o
+  CC      drivers/kernelsu/runtime/ksud_integration.o
+  CC      drivers/kernelsu/selinux/selinux.o
+  CC      drivers/kernelsu/selinux/rules.o
+  CC      drivers/kernelsu/selinux/sepolicy.o
+  CC      drivers/kernelsu/supercall/dispatch.o
+  AR      drivers/base/built-in.a
+  CC      drivers/kernelsu/supercall/perm.o
+  CC      drivers/kernelsu/supercall/supercall.o
+  AR      net/ethtool/built-in.a
+  AR      net/built-in.a
+  AR      kernel/trace/built-in.a
+  AR      drivers/kernelsu/built-in.a
+  AR      drivers/built-in.a
+  CC      kernel/kheaders.o
+  AR      kernel/built-in.a
+  GEN     .version
+  CHK     include/generated/compile.h
+  UPD     include/generated/compile.h
+  CC      init/version.o
+  AR      init/built-in.a
+  GEN     .tmp_initcalls.lds
+  GEN     .tmp_symversions.lds
+  LTO     vmlinux.o
+  MODPOST vmlinux.symvers
+  MODINFO modules.builtin.modinfo
+  GEN     modules.builtin
+  LD      .tmp_vmlinux.btf
+  BTF     .btf.vmlinux.bin.o
+  LD      .tmp_vmlinux.kallsyms1
+  KSYMS   .tmp_vmlinux.kallsyms1.S
+  AS      .tmp_vmlinux.kallsyms1.S
+  LD      .tmp_vmlinux.kallsyms2
+  KSYMS   .tmp_vmlinux.kallsyms2.S
+  AS      .tmp_vmlinux.kallsyms2.S
+  LD      vmlinux
+  BTFIDS  vmlinux
+  SORTTAB vmlinux
+  SYSMAP  System.map
+  FIPS : Generating hmac of crypto and updating vmlinux... 
+module_name:  crypto
+Used parsers are:  llvm-readelf llvm-nm
+
+Number defined symbols in .text and .init.text of SKC object files:  471
+Number defined symbols in .rodata of SKC object files:  70
+
+Number symbols from output ELF in .text and .init.text:  63392
+Number symbols from output ELF in .rodata:  10155
+
+Number symbols included to canister from .text and .init.text:  336
+Number symbols included to canister from .rodata 47
+
+Size canister after removing unnecessary identical symbols in .text and .init.text:  330
+Size canister after removing unnecessary identical symbols in .rodata:  47
+
+GAPs covered bytes len   : 0x7b4 (1.9 K)  
+
+integrity_crypto_addrs:  name: 'integrity_crypto_addrs', type: 'OBJECT', bind: 'GLOBAL', ndx: '3', visibility: 'DEFAULT', address: '0xffffffc009a4b4f0', size: '0x10000'
+crypto_buildtime_address:  name: 'crypto_buildtime_address', type: 'OBJECT', bind: 'GLOBAL', ndx: '3', visibility: 'DEFAULT', address: '0xffffffc009a5b510', size: '0x8'
+HMAC for "crypto" module is: b'6df9d6ce146c45343c4ba31441e7ef94a891b432ba3b1750ed40a9fbde0291b9'
+FIPS integrity procedure has been finished for crypto
+  OBJCOPY arch/arm64/boot/Image
 make: se sale del directorio '/home/clch/Proyects/X810-kernelSU/SM-X810_EUR_15_Opensource/kernel/kernel_platform/common'
 
 [INFO] ==============================================
